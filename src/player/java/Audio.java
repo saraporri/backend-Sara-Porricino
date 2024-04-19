@@ -1,24 +1,32 @@
 package player.java;
 
 public class Audio extends Media implements Riproducibili {
+
+    // Dichiarazione degli attributi della classe
     private int volume;
     private int durata;
     private static final int minimo = 0;
-    private static final int massimo = 10;
+    private static final int massimo = 0;
 
-    public Audio(String titolo, int volume, int durata){
+
+    // Costruttore della classe Audio
+    public Audio(String titolo, int volume, int durata) {
+
         super(titolo);
-        this.volume = inverti(volume);
+        this.volume = switchSegno(volume);
         setVolume(volume);
-        this.durata = inverti(durata);
+        this.durata = switchSegno(durata);
 
     }
-    public int inverti(int valore){
+
+    // Metodo per ottenere il valore assoluto di un numero
+    public int switchSegno(int valore){
         if(valore < 0) valore = -valore;
         return valore;
     }
 
 
+    // Metodo per impostare il volume dell'audio
     private void setVolume(int volume) {
         if (volume >= minimo && volume <= massimo) {
             this.volume = volume;
@@ -39,11 +47,11 @@ public class Audio extends Media implements Riproducibili {
             System.out.println(titolo + ": " + livelloVolume);
         }
 
-
     }
 
+
     @Override
-    public void alza() {
+    public void alzaVolume()  {
         if (volume < 10) {
             volume++;
             System.out.println("Volume alzato a " + volume);
@@ -53,8 +61,9 @@ public class Audio extends Media implements Riproducibili {
     }
 
 
+
     @Override
-    public void abbassa() {
+    public void abbassaVolume() {
         if (volume > 0) {
             volume--;
             System.out.println("Volume abbassato a " + volume);
@@ -63,8 +72,19 @@ public class Audio extends Media implements Riproducibili {
         }
     }
 
+
     @Override
-    public void inizia() {
+    public void esegui() {
         play();
+    }
+
+    @Override
+    public void aumentaLuminosita() {
+
+    }
+
+    @Override
+    public void diminuisciLuminosita() {
+
     }
 }
